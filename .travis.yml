@@ -1,0 +1,6 @@
+os:
+  - linux
+  - osx
+language: generic
+script:
+  - make check -j
