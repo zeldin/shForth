@@ -1,6 +1,6 @@
 # Forth in Shell
 
-[![Build Status](https://travis-ci.org/frno7/shForth.svg?branch=master)](https://travis-ci.org/frno7/shForth)
+[![Build Status](https://travis-ci.org/zeldin/shForth.svg?branch=master)](https://travis-ci.org/zeldin/shForth)
 
 ```
 config.sh is created using "./forth.sh --configure" and forth is
