@@ -182,7 +182,7 @@ builtin '/mod' slash_mod
 zero_less() { # 0<
   pop n
   if "$expr" 0 '>' "$n" >/dev/null; then
-    push 1
+    push -1
   else
     push 0
   fi
@@ -192,7 +192,7 @@ builtin '0<' zero_less
 zero_equals() { # 0=
   pop n
   if "$expr" 0 '=' "$n" >/dev/null; then
-    push 1
+    push -1
   else
     push 0
   fi
@@ -295,7 +295,7 @@ less_than() { # <
   pop n2
   pop n1
   if "$expr" "$n1" '<' "$n2" >/dev/null; then
-    push 1
+    push -1
   else
     push 0
   fi
@@ -311,7 +311,7 @@ equals() { # =
   pop n2
   pop n1
   if "$expr" "$n1" '=' "$n2" >/dev/null; then
-    push 1
+    push -1
   else
     push 0
   fi
@@ -322,7 +322,7 @@ greater_than() { # >
   pop n2
   pop n1
   if "$expr" "$n1" '>' "$n2" >/dev/null; then
-    push 1
+    push -1
   else
     push 0
   fi
