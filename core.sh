@@ -139,7 +139,7 @@ dot() { # .
   dup; abs
   push 0; number_sign_s; rote; sign
   number_sign_greater
-  type
+  type_
   space
 }
 builtin '.' dot
@@ -147,7 +147,7 @@ builtin '.' dot
 dot_quote() { # ."
   push 34; parse
   if test `peek $state` = 0; then
-    type
+    type_
   else
     pop n
     pop addr
@@ -950,7 +950,7 @@ _then() {
 builtin 'then' _then
 immediate
 
-type() {
+type_() {
   pop u
   pop c_addr
   while "$expr" 0 '<' $u >/dev/null; do
@@ -960,7 +960,7 @@ type() {
     u="`\"$expr\" $u - 1`"
   done
 }
-builtin 'type' type
+builtin 'type' type_
 
 builtin 'u.' dot
 
