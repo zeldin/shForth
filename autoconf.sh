@@ -52,12 +52,15 @@ if type typeset 2>&1 >/dev/null; then
 else
   typeset_f="set"
 fi
+echo >&2 "use '$typeset_f' to show functions"
 
 foo="'"
 if test `set|grep '^foo='|wc -c` -eq 6; then
   set_output=raw
+  echo >&2 "set prints raw values of variables"
 else
   set_output=cooked
+  echo >&2 "set prints cooked values of variables"
 fi
 
 echo >&2 "Creating ${srcdir}config.sh"
