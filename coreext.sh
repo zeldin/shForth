@@ -62,3 +62,13 @@ zero_not_equals() { # 0<>
   fi
 }
 builtin '0<>' zero_not_equals
+
+zero_greater() { # 0>
+  pop n
+  if "$expr" 0 '<' "$n" >/dev/null; then
+    push -1
+  else
+    push 0
+  fi
+}
+builtin '0>' zero_greater
