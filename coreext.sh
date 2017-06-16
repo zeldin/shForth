@@ -26,6 +26,13 @@ bye() {
 }
 builtin 'bye' bye
 
+nip() {
+  pop x2
+  pop x1
+  push "$x2"
+}
+builtin 'nip' nip
+
 tuck() {
   pop x2
   pop x1
