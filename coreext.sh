@@ -25,3 +25,12 @@ bye() {
   exit
 }
 builtin 'bye' bye
+
+tuck() {
+  pop x2
+  pop x1
+  push "$x2"
+  push "$x1"
+  push "$x2"
+}
+builtin 'tuck' tuck
