@@ -898,11 +898,11 @@ sign() {
   fi
 }
 
-source() {
+source_() {
   push $inbuf
   push $inbuflen
 }
-builtin 'source' source
+builtin 'source' source_
 
 space() {
   x=" "
