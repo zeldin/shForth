@@ -21,3 +21,7 @@ dot_s() { # .s
 }
 builtin '.s' dot_s
 
+bye() {
+  exit
+}
+builtin 'bye' bye
