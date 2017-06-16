@@ -47,6 +47,19 @@ find_path sed /bin
 
 chk_nocr 'echo "$x\c"' '/bin/echo -n "$x"' '/usr/bin/echo -n "$x"' 'echo -n "$x"'
 
+if type typeset 2>&1 >/dev/null; then
+  typeset_f="typeset -f"
+else
+  typeset_f="set"
+fi
+
+foo="'"
+if test `set|grep '^foo='|wc -c` -eq 6; then
+  set_output=raw
+else
+  set_output=cooked
+fi
+
 echo >&2 "Creating ${srcdir}config.sh"
 
 cat > "${srcdir}config.sh" <<EOF
@@ -60,6 +73,9 @@ od="$od"
 sed="$sed"
 
 echo_nocr='$echo_nocr'
+
+typeset_f="$typeset_f"
+set_output="$set_output"
 EOF
 
 echo >&2 "configuration completed."
