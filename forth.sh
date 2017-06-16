@@ -36,7 +36,7 @@ ip="$quit"
 if test x--dump = x"$1"; then
   "$sed" -ne '1p' < "$0" > "${srcdir}forth"
   set | "$sed" -ne '/^[_a-z]* *(/,/^}/p' >> "${srcdir}forth"
-  set | "$sed" -e '/^[_a-z]* *(/,/^}/d' -e '/^[^a-z]/d' -e "s/'/'\"'\"'/" -e 's/^\([^ =]*=\)\(.*\)$/\1'"'\\2'"'/' >> "${srcdir}forth"
+  set | "$sed" -e '/^[_a-z]* *(/,/^}/d' -e '/^[^a-z]/d' -e "s/'/'\"'\"'/g" -e 's/^\([^ =]*=\)\(.*\)$/\1'"'\\2'"'/' >> "${srcdir}forth"
   "$sed" -e '1,/^# dump/d' < "$0" >> "${srcdir}forth"
   chmod a+x "${srcdir}forth"
   echo >&2 "Created ${srcdir}forth."
