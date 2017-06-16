@@ -60,6 +60,14 @@ two_to_r() { # 2>r
 }
 builtin '2>r' two_to_r
 
+two_r_from() { # 2r>
+  rpop x2
+  rpop x1
+  push "$x1"
+  push "$x2"
+}
+builtin '2r>' two_r_from
+
 not_equals() { # <>
   pop n2
   pop n1
