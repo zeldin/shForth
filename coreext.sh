@@ -52,6 +52,14 @@ tuck() {
 }
 builtin 'tuck' tuck
 
+two_to_r() { # 2>r
+  pop x2
+  pop x1
+  rpush "$x1"
+  rpush "$x2"
+}
+builtin '2>r' two_to_r
+
 not_equals() { # <>
   pop n2
   pop n1
