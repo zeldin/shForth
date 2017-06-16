@@ -4,3 +4,5 @@ os:
 language: generic
 script:
   - make check -j
+install:
+  - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then echo "dash dash/sh boolean false" | sudo debconf-set-selections; sudo dpkg-reconfigure dash; fi
