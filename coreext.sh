@@ -38,6 +38,11 @@ true_() {
 }
 builtin 'true' true_
 
+false_() {
+  push 0
+}
+builtin 'false' false_
+
 tuck() {
   pop x2
   pop x1
