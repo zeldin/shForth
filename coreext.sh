@@ -33,6 +33,11 @@ nip() {
 }
 builtin 'nip' nip
 
+true_() {
+  push -1
+}
+builtin 'true' true_
+
 tuck() {
   pop x2
   pop x1
