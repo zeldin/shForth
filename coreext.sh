@@ -68,6 +68,16 @@ two_r_from() { # 2r>
 }
 builtin '2r>' two_r_from
 
+two_r_fetch() { # 2r@
+  rpop x2
+  rpop x1
+  rpush "$x1"
+  rpush "$x2"
+  push "$x1"
+  push "$x2"
+}
+builtin '2r@' two_r_fetch
+
 not_equals() { # <>
   pop n2
   pop n1
