@@ -41,3 +41,14 @@ tuck() {
   push "$x2"
 }
 builtin 'tuck' tuck
+
+not_equals() { # <>
+  pop n2
+  pop n1
+  if "$expr" "$n1" '!=' "$n2" >/dev/null; then
+    push -1
+  else
+    push 0
+  fi
+}
+builtin '<>' not_equals
