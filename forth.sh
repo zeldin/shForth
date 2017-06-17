@@ -49,5 +49,7 @@ fi
 
 # dumped stuff goes here
 
+<${srcdir}coreext.fth run
+
 echo "shForth ready."
 run
