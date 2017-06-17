@@ -25,3 +25,86 @@ bye() {
   exit
 }
 builtin 'bye' bye
+
+nip() {
+  pop x2
+  pop x1
+  push "$x2"
+}
+builtin 'nip' nip
+
+true_() {
+  push -1
+}
+builtin 'true' true_
+
+false_() {
+  push 0
+}
+builtin 'false' false_
+
+tuck() {
+  pop x2
+  pop x1
+  push "$x2"
+  push "$x1"
+  push "$x2"
+}
+builtin 'tuck' tuck
+
+two_to_r() { # 2>r
+  pop x2
+  pop x1
+  rpush "$x1"
+  rpush "$x2"
+}
+builtin '2>r' two_to_r
+
+two_r_from() { # 2r>
+  rpop x2
+  rpop x1
+  push "$x1"
+  push "$x2"
+}
+builtin '2r>' two_r_from
+
+two_r_fetch() { # 2r@
+  rpop x2
+  rpop x1
+  rpush "$x1"
+  rpush "$x2"
+  push "$x1"
+  push "$x2"
+}
+builtin '2r@' two_r_fetch
+
+not_equals() { # <>
+  pop n2
+  pop n1
+  if "$expr" "$n1" '!=' "$n2" >/dev/null; then
+    push -1
+  else
+    push 0
+  fi
+}
+builtin '<>' not_equals
+
+zero_not_equals() { # 0<>
+  pop n
+  if "$expr" 0 '!=' "$n" >/dev/null; then
+    push -1
+  else
+    push 0
+  fi
+}
+builtin '0<>' zero_not_equals
+
+zero_greater() { # 0>
+  pop n
+  if "$expr" 0 '<' "$n" >/dev/null; then
+    push -1
+  else
+    push 0
+  fi
+}
+builtin '0>' zero_greater
