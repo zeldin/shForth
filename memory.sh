@@ -10,6 +10,14 @@ peek() {
   eval "echo \$cell_$1"
 }
 
+lowercase() {
+  if test 65 -le "$1" -a "$1" -le 90; then # 'A' <= $1 <= 'Z'
+    echo `"$expr" "$1" + 32` # $1 + 'a' - 'A'
+  else
+    echo "$1"
+  fi
+}
+
 sp=0
 
 push() {
