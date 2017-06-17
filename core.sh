@@ -600,14 +600,14 @@ environment_query() {
 builtin 'environment?' environment_query
 
 number() {
- pop addr; push 0; push 0; push "$addr"; count
+ pop n_addr; push 0; push 0; push "$n_addr"; count
  to_number
  pop n2; pop tmp; pop n1; pop n1
  if test 0 = $n2; then
    push $n1
    if test `peek $state` != 0; then literal; fi
  else
-   echo "? HUH"
+   x='? undefined word '; eval "$echo_nocr"; push "$n_addr"; count; type_; c_r
    interpret "$quit"
    return
  fi
@@ -810,10 +810,12 @@ builtin 'over' over
 postpone() {
   push 32
   word
+  pop p_addr
+  push "$p_addr"
   find
   pop n
   if test 0 = "$n"; then
-   echo "? HUH"
+   x='? undefined word '; eval "$echo_nocr"; push "$p_addr"; count; type_; c_r
    interpret "$quit"
   else
     comma
