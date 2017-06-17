@@ -24,10 +24,10 @@ find_path() {
 }
 
 chk_nocr() {
-  x="."
+  x=\\
   while test ! -z "$1"; do
     cmd="$1"
-    if test "`eval \"$cmd\"; eval \"$cmd\"`" = ..; then
+    if test "`eval \"$cmd\"; eval \"$cmd\"`" = \\\\; then
       cat >&2 <<EOF
 use '$cmd' to echo without linebreak
 EOF
@@ -45,7 +45,7 @@ find_path dd /bin
 find_path od /usr/bin
 find_path sed /bin
 
-chk_nocr 'echo "$x\c"' '/bin/echo -n "$x"' '/usr/bin/echo -n "$x"' 'echo -n "$x"'
+chk_nocr 'echo "$x\c"' '/bin/echo -n "$x"' '/usr/bin/echo -n "$x"' 'echo -n "$x"' 'printf "%s" "$x"'
 
 if type typeset 2>&1 >/dev/null; then
   typeset_f="typeset -f"
