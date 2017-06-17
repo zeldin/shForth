@@ -810,10 +810,12 @@ builtin 'over' over
 postpone() {
   push 32
   word
+  pop p_addr
+  push "$p_addr"
   find
   pop n
   if test 0 = "$n"; then
-   echo "? HUH"
+   x='? undefined word '; eval "$echo_nocr"; push "$p_addr"; count; type_; c_r
    interpret "$quit"
   else
     comma
