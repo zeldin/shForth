@@ -14,7 +14,8 @@ identifier() {
   x="wrd_$n"
   addr="`\"$expr\" $addr + 1`"
   while expr 0 '<' $n >/dev/null; do
-    x="${x}_`peek \"$addr\"`"
+    c="`peek \"$addr\"`"
+    x="${x}_`lowercase \"$c\"`"
     addr="`\"$expr\" $addr + 1`"
     n="`\"$expr\" $n - 1`"
   done
