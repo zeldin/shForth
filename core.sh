@@ -153,7 +153,7 @@ dot_quote() { # ."
     pop addr
     s=""
     while test $n != 0; do
-      eval 's="$s$graphic_'"`peek $addr`"
+      eval 's="$s$graphic_'"`peek $addr`"'"'
       addr="`\"$expr\" $addr + 1`"
       n="`\"$expr\" $n - 1`"
     done
