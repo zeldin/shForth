@@ -108,3 +108,9 @@ zero_greater() { # 0>
   fi
 }
 builtin '0>' zero_greater
+
+backslash() { # \
+  while inbufget xc; do :; done
+}
+builtin '\' backslash
+immediate
