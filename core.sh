@@ -935,7 +935,10 @@ spaces() {
 }
 builtin 'spaces' spaces
 
-builtin 'state' "push $state"
+state_() { # state
+   push "$state"
+}
+builtin 'state' state_
 
 swap() {
   pop x2
