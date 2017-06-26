@@ -40,7 +40,23 @@ EOF
   exit 1
 }
 
-find_path expr /usr/bin
+if [ "$((15 + 17))" = 32 ]; then
+  expr_define='builtin_expr()
+{
+  tmp=$(($@))
+  echo "$tmp"
+  if [ "$tmp" = 0 ]; then
+    return 1
+  else
+    return 0
+  fi
+}'
+  expr="builtin_expr"
+  echo >&2 'use builtin expr based on $(())'
+else
+  expr_define=""
+  find_path expr /usr/bin
+fi
 find_path dd /bin
 find_path od /usr/bin
 find_path sed /bin
@@ -69,6 +85,8 @@ cat > "${srcdir}config.sh" <<EOF
 #! /bin/sh
 
 # This file was automatically generated with  $0 $@
+
+$expr_define
 
 expr="$expr"
 dd="$dd"
