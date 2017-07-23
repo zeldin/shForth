@@ -601,10 +601,20 @@ builtin 'environment?' environment_query
 
 number() {
  pop n_addr; push 0; push 0; push "$n_addr"; count
+ pop cnt; pop n_addr
+ sign=""
+ if test cnt != 0; then
+   if test x`peek $n_addr` = x45; then
+     sign="-"
+     n_addr="`\"$expr\" $n_addr + 1`"
+     cnt="`\"$expr\" $cnt - 1`"
+   fi
+ fi
+ push "$n_addr"; push "$cnt"
  to_number
  pop n2; pop tmp; pop n1; pop n1
  if test 0 = $n2; then
-   push $n1
+   push $sign$n1
    if test `peek $state` != 0; then literal; fi
  else
    x='? undefined word '; eval "$echo_nocr"; push "$n_addr"; count; type_; c_r
